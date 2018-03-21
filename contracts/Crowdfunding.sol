@@ -13,7 +13,6 @@ import "./Campaign.sol";
 contract Crowdfunding is Ownable, Campaign {
 
     mapping (uint => Campaign) campaigns;
-    uint campaignId = 0;
 
     /**
      * 캠페인 생성을 로깅하는 이벤트

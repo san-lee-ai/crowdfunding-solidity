@@ -10,4 +10,6 @@ contract Campaign {
         uint deadline;
         bool closed;
     }
+
+    uint campaignId = 0;
 }
