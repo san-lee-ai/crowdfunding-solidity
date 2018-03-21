@@ -8,7 +8,7 @@ import "./Campaign.sol";
  * @dev 이더리움 기반의 크라우드펀딩 DApp.
  * 프로그래머스(programmers.co.kr) 블록체인 개발 온라인 코스의 실습을 위해 작성되었습니다.
  * programmers.co.kr/learn/courses/[[코스번호]]
- * @author <jimmy@grepp.co>
+ * @author jimmy@grepp.co
  */
 contract Crowdfunding is Ownable, Campaign {
 
@@ -111,7 +111,7 @@ contract Crowdfunding is Ownable, Campaign {
             FundTransfer(_campaignId, msg.sender, c.pledgedFund, campaigns[_campaignId].closed);
         } else {
             /**
-             * @TODO: 요구사항 중 "기간 내에 목표금액을 달성하지 못한 경우,
+             * @TODO 요구사항 중 "기간 내에 목표금액을 달성하지 못한 경우,
              * 펀딩 금액은 펀딩한 사람들에게 환불되어야 합니다."는 실습 중에 구현되지 않았습니다.
              * 만약 이를 구현한다면 이 위치에 revert() 대신 들어가게 됩니다.
              */
