@@ -1,1 +1,7 @@
 # crowdfunding-solidity
+
+이더리움 기반의 크라우드펀딩 DApp.
+
+프로그래머스(programmers.co.kr) 블록체인 개발 온라인 코스의 실습을 위해 작성되었습니다.
+
+programmers.co.kr/learn/courses/[[코스번호]]
