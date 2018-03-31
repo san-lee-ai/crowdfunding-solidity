@@ -7,7 +7,7 @@ import "./Campaign.sol";
  * @title Crowdfunding
  * @dev 이더리움 기반의 크라우드펀딩 DApp.
  * 프로그래머스(programmers.co.kr) 블록체인 개발 온라인 코스의 실습을 위해 작성되었습니다.
- * programmers.co.kr/learn/courses/[[코스번호]]
+ * programmers.co.kr/learn/courses/36
  * @author jimmy@grepp.co
  */
 contract Crowdfunding is Ownable, Campaign {
@@ -17,14 +17,14 @@ contract Crowdfunding is Ownable, Campaign {
     /**
      * 캠페인 생성을 로깅하는 이벤트
      * @param _id 생성된 캠페인의 id.
-     * @param _creater 캠페인 생성자.
+     * @param _creator 캠페인 생성자.
      * @param _fundingGoal 생성된 캠페인의 펀딩 목표 금액.
      * @param _pledgedFund 생성된 캠페인이 현제 모금한 금액.
      * @param _deadline 생성된 캠페인의 마감일.
      */
     event GenerateCampaign(
         uint indexed _id,
-        address indexed _creater,
+        address indexed _creator,
         uint256 _fundingGoal,
         uint256 _pledgedFund,
         uint _deadline
@@ -47,13 +47,13 @@ contract Crowdfunding is Ownable, Campaign {
     /**
      * 펀딩된 금액을 캠페인 생성자가 받았음을 로깅하는 이벤트
      * @param _id 해당 캠페인의 id.
-     * @param _creater 해당 캠페인 생성자.
+     * @param _creator 해당 캠페인 생성자.
      * @param _pledgedFund 펀딩 받은 금액.
      * @param _closed 캠페인이 마감되었는지 여부.
      */
     event FundTransfer(
         uint indexed _id,
-        address indexed _creater,
+        address indexed _creator,
         uint256 _pledgedFund,
         bool _closed
     );
@@ -68,7 +68,7 @@ contract Crowdfunding is Ownable, Campaign {
      * @dev 캠페인을 만든 사람만 허용하는 제어자.
      * @param _id 해당 캠페인의 id.
      */
-    modifier campaignOwner(uint _id) { require(msg.sender == campaigns[_id].creater); _; }
+    modifier campaignOwner(uint _id) { require(msg.sender == campaigns[_id].creator); _; }
 
     /**
      * @dev 캠페인을 생성합니다.
@@ -79,7 +79,7 @@ contract Crowdfunding is Ownable, Campaign {
             0, getDeadline(now), false);
 
         Campaign memory c = campaigns[campaignId];
-        GenerateCampaign(c.id, c.creater, c.fundingGoal, c.pledgedFund, c.deadline);
+        GenerateCampaign(c.id, c.creator, c.fundingGoal, c.pledgedFund, c.deadline);
         campaignId++;
     }
 
@@ -88,7 +88,7 @@ contract Crowdfunding is Ownable, Campaign {
      * @param _campaignId 펀딩하고자 하는 캠페인의 id.
      */
     function fundCampaign(uint _campaignId) payable campaignNotClosed(_campaignId) public {
-        require(msg.sender != campaigns[_campaignId].creater);
+        require(msg.sender != campaigns[_campaignId].creator);
 
         campaigns[_campaignId].pledgedFund += msg.value;
         campaigns[_campaignId].balance[msg.sender] += msg.value;
